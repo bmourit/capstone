@@ -954,7 +954,11 @@ static char *printAliasInstrEx(MCInst *MI, SStream *OS, void *info)
 				}
 			}
 		} else {
-			if (cr > PPC_CR0) {
+			// RetDec code change begin
+			// TODO: retdec, fix https://github.com/aquynh/capstone/issues/970
+			//if (cr > PPC_CR0) {
+			if (cr >= PPC_CR0) {
+			// RetDec code change end
 				needComma = true;
 				SStream_concat(&ss, " cr%d", cr - PPC_CR0);
 				op_addReg(MI, PPC_REG_CR0 + cr - PPC_CR0);

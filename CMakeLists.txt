@@ -492,6 +492,7 @@ if (CAPSTONE_BUILD_STATIC)
     add_library(capstone-static STATIC ${ALL_SOURCES} ${ALL_HEADERS})
     set_property(TARGET capstone-static PROPERTY OUTPUT_NAME capstone)
     set(default-target capstone-static)
+    target_include_directories(capstone-static PUBLIC "${PROJECT_SOURCE_DIR}/include")
 endif ()
 
 # Force static runtime libraries
@@ -525,6 +526,7 @@ if (CAPSTONE_BUILD_SHARED)
         set(default-target capstone-shared)
         add_definitions(-DCAPSTONE_SHARED)
     endif ()
+    target_include_directories(capstone-shared PUBLIC "${PROJECT_SOURCE_DIR}/include")
 endif ()
 
 if (CAPSTONE_BUILD_TESTS)
